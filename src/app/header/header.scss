@@ -1,0 +1,60 @@
+:host {
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    background-color: var(--primary-90);
+    color: white;
+}
+
+.header-container {
+    width: 100%;
+}
+
+.header-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    height: 64px;
+    gap: 16px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+.menu-text {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.menu-icon {
+    font-size: 18px;
+}
+
+.menu-arrow {
+    font-size: 16px;
+}

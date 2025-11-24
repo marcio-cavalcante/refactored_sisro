@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Selecione sua unidade</h2>
+
+    <input type="text" placeholder="Digite o código ou nome da unidade" [(ngModel)]="filtro" (input)="filtrar()" />
+
+    @if (sugestoes.length) {   
+        <ul class="sugestoes">
+            <li *ngFor="let u of sugestoes" (click)="selecionar(u)">
+                {{ u.codigo }} - {{ u.nome }}
+            </li>
+        </ul>
+    }
+</div>

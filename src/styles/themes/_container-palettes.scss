@@ -1,0 +1,41 @@
+@use 'sass:map';
+
+// MAPA DE PALETAS DE CORES PARA CONTAINERS
+// Atribuidos nomes para cada um dos 25 containers
+$container-palettes: (
+    'gray': (bg: #f9f9f9, border: #9e9e9e),
+    'blue': (bg: #e3f2fd, border: #2196f3),
+    'green': (bg: #e8f5e9, border: #4caf50),
+    'red': (bg: #ffebee, border: #f44336),
+    'yellow': (bg: #fffde7, border: #ffeb3b),
+    'purple': (bg: #f3e5f5, border: #9c27b0),
+    'cyan': (bg: #e0f7fa, border: #00bcd4),
+    'teal': (bg: #e8f5e9, border: #009688),
+    'orange-vibrant': (bg: #fff8e1, border: #ff9800),
+    'deep-orange': (bg: #fbe9e7, border: #ff5722),
+    'light-blue': (bg: #e1f5fe, border: #03a9f4),
+    'light-green': (bg: #f1f8e9, border: #8bc34a),
+    'brown': (bg: #efebe9, border: #795548),
+    'blue-gray': (bg: #eceff1, border: #607d8b),
+    'indigo': (bg: #e8eaf6, border: #3f51b5),
+    'orange-peach': (bg: #ffccbc, border: #ff7043),
+    'dark-brown': (bg: #d7ccc8, border: #5d4037),
+    'dark-indigo': (bg: #c5cae9, border: #3949ab),
+    'lime': (bg: #f0f4c3, border: #afb42b),
+    'dark-teal': (bg: #b2dfdb, border: #00796b),
+    'light-lime': (bg: #e6ee9c, border: #c0ca33),
+    'dark-light-blue': (bg: #b3e5fc, border: #0288d1),
+    'amber': (bg: #ffe0b2, border: #ff6f00),
+    'deep-purple': (bg: #d1c4e9, border: #673ab7),
+    'pink': (bg: #fce4ec, border: #d81b60)
+);
+
+// Geração das class cor, baseado nas antigas paletas checklist
+// Ex.: .cgray, .container-color--blue.....
+@each $name, $palette in $container-palettes {
+    .container-color--#{$name} {
+        background-color: map.get($palette, bg);
+        border-left: 5px solid map.get($palette, border);
+        border-radius: var(--border-radius);
+    }
+}

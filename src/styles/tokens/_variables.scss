@@ -1,0 +1,41 @@
+:root {
+    /* Paleta Primária Azul Caixa */
+    --primary-130: #002a4d;
+    --primary-110: #00437a;
+    --primary-90: #005ca9;
+    --primary-70: #2d8ad8;
+    --primary-50: #6dbafa;
+    --primary-30: #a0d2fc;
+    --primary-10: #e5f1fc;
+
+    /* Paleta Secondária Laranja Caixa */
+    --secondary-130: #663a00;
+    --secondary-110: #a65e00;
+    --secondary-90: #d87b00;
+    --secondary-70: #f39200;
+    --secondary-50: #fdb548;
+    --secondary-30: #ffd392;
+    --secondary-10: #ffefd6;
+
+    /* Paleta Neutra Cinza Caixa */
+    --grayscale-130: #22292e;
+    --grayscale-110: #404b52;
+    --grayscale-90: #64747a;
+    --greyscale-70: #9eb2b8;
+    --greyscale-50: #d0e0e3;
+    --greyscale-30: #eBf1f2;
+    --greyscale-10: #f7fAfa;
+
+    /* Design */
+    --border-radius-sm: 4px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.07), 0 6px 10px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 14px 30px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.08);
+    --transition-fast: all 0.2s ease;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+}

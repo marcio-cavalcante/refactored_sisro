@@ -1,12 +1,21 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Header } from './header/header';
+import { Footer } from './footer/footer';
+import { Sidebar } from './sidebar/sidebar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header, Footer, Sidebar],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('sisro21');
+  sidebarAberto = true;
+
+    toggleSidebar() {
+    this.sidebarAberto = !this.sidebarAberto;
+  }
+  
+  protected readonly title = signal('SISRO');
 }
