@@ -16,6 +16,11 @@ export const routes: Routes = [
     },
 
     {
+        path: 'contratos',
+        loadChildren: () => import('./features/contratos/contratos.routes').then(m => m.routes)
+    },
+
+    {
         path: 'desbloqueio',
         loadChildren: () => import('./features/ogu/desbloqueio/desbloqueio.routes').then(m => m.routes)
     },

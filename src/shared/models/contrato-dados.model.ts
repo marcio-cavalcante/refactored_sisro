@@ -1,0 +1,32 @@
+export interface ContratoDados {
+    operacao: string;
+    dv: string;
+    convenioTgov: string;
+    propostaTgov: string;
+    nomeTomador: string;
+    cnpjTomador: string;
+    emailTomador: string;
+    classificacao: string;
+    programa: string;
+    objetivo: string;
+    objeto: string;
+    selecao: string;
+    assinatura: string;
+    vigencia: string;
+    vi: string;
+    vr: string;
+    cp1: string;
+    cp2: string;
+    vrCreditado: string;
+    vrDesbloqueado: string;
+    vrSaldoCreditado: string;
+    cpDesbloqueado: string;
+    valorExecucaoVigente: string;
+    cAgencia: string;
+    agencia: string;
+    cCorrente: string;
+    idExterna: string;
+    obtv: string;
+    gestor: string;
+    etiquetasDaOperacao: string;
+}
