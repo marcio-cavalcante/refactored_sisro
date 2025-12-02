@@ -13,10 +13,11 @@ export class Desbloqueio {
 
 	contratoStore = inject(ContratoStoreService);
 
-	dadosContrato = computed(() => this.contratoStore.contratoSelecionado$() ?? null);
-	
 	ngOnInit(): void {
-		console.log(this.dadosContrato())
+		console.log('Desbloqueio - Dados do Contrato:');
+		console.log(this.contratoStore.convenioTgov());
+		console.log(this.contratoStore.propostaTgov());
+		console.log(this.contratoStore.nomeTomador());
 	}
 	
 	

@@ -1,78 +1,65 @@
 import { Component, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CsvFetchService } from '../../core/services/csv-fetch.service';
 import { ContratoStoreService } from '../../core/services/contrato-store.service';
 import { ContratoDados } from '../../shared/models/contrato-dados.model';
+import { Loader } from '../../shared/components/loader/loader';
+import { Alert } from '../../shared/components/modal/alert/alert';
+import { ModalService } from '../../shared/components/modal/alert/modal.service';
 
 @Component({
 	selector: 'app-contratos',
-	imports: [FormsModule],
+	imports: [FormsModule, CommonModule, Loader, Alert],
 	templateUrl: './contratos.html',
 	styleUrl: './contratos.scss',
 })
 export class Contratos {
 
-	private csvFetchService = inject(CsvFetchService);
-	private contratoStore = inject(ContratoStoreService);
+	modalService = inject(ModalService);
 
-	dadosCsv: ContratoDados[] = [];
-	resultado = signal<ContratoDados | undefined | null>(undefined);
+	loading = signal(false);
+
+	private csvFetchService = inject(CsvFetchService);
+	contratoStore = inject(ContratoStoreService);
+
 	operacaoBuscada: string = '';
+	buscaFalhou = signal(false);
 
 	ngOnInit(): void {
+		this.loading.set(true);
 		this.csvFetchService.getCsvData('assets/data/Planilha_Tudo_Ogu.csv')
 			.subscribe(data => {
-			this.dadosCsv = data as ContratoDados[]
+			const contratos = data as ContratoDados[];
+			this.contratoStore.setListaContratos(contratos);
+			this.loading.set(false);
 		});
 	};
 
 	buscarOperacao(): void {
         const valorDigitado = this.operacaoBuscada.trim();
  
-        // if (!valorDigitado) {
-        //     this.dialog.open(AlertDialogComponent, {
-        //         data: { mensagem: 'Por favor, informe um número de operção ou convênio para busca.' }
-        //     });
-        //     return;
-        // }
-
 		if (!valorDigitado) {
-            console.log('Por favor, informe um número de operção ou convênio para busca.');
-            return;
-        }
- 
-        // Efetua a busca pelos números de 'operacao' ou 'convenioTgov'
-        const resultado = this.dadosCsv.find(linha =>
-            linha.operacao?.trim() === valorDigitado ||
-            linha.convenioTgov?.trim() === valorDigitado
-        ) || null;
- 
-        // Armazena somente a linha do contrato pesquisado na variável resultado
-        this.resultado.set(resultado);
-  
+			this.modalService.open({
+				mensagem: 'Por favor, informe um número de operação ou convênio para busca.'
+			});
+			this.buscaFalhou.set(true);
+			return;
+		};
+
+        // Efetua a busca pelos números de 'operacao' ou 'convenioTgov' dentro do Store
+        const resultado = this.contratoStore.buscarPorOperacaoOuConvenio(valorDigitado);
+   
         if (resultado) {
-            this.contratoStore.setContrato(resultado); // Uso do service para setar o contrato selecionado
-			console.log('Dados:')
-			console.log('Operacao', resultado.operacao)
-			console.log(typeof(resultado.operacao))
-			console.log('vi', resultado.vi)
-			console.log(typeof(resultado.vi))
-			console.log('vr', resultado.vr)
-			console.log(typeof(resultado.vr))
-			console.log('cp1', resultado.cp1)
-			console.log(typeof(resultado.cp1))
-			console.log('cp2', resultado.cp2)
-			console.log(typeof(resultado.cp2))
-
-
+			this.buscaFalhou.set(false);
  
             // Oculta o campo de busca após a pesquisa
             // this.mostrarCampoBusca = false;
         } else {
-			console.log('Operação não encontrada')
-            // this.dialog.open(AlertDialogComponent, {
-            //     data: { mensagem: `Operação ${valorDigitado} não encontrada.` }
-            // });
+			this.buscaFalhou.set(true);
+			this.modalService.open({
+				mensagem: `Operação ${valorDigitado} não encontrada.`
+			});
             // this.mostrarCampoBusca = true;
         }
     }

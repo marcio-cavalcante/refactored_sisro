@@ -7,16 +7,35 @@ aria-label="Informe a operação para buscar" />
     <span class="material-icons">search</span>
 </button>
 
-@defer (when resultado()) {
+@if(loading()) {
+    <app-loader></app-loader>
+} 
+
+@else if(buscaFalhou()) {
     <div>
-        <h3>Operação</h3>
-        <p>Operação {{ resultado()?.operacao }}</p>
-        <p>DV {{ resultado()?.dv }}</p>
+      Operação/convênio não encontrada(o).
     </div>
-} @placeholder {
-    <p>Buscando operação.</p>
-} @loading {
-    <p>Carregando</p>
-} @error {
-    <p>Nenhum contrato encontrado para o valor informado.</p>
 }
+
+@else if(contratoStore.contrato()) {   
+    <div>
+        <h3>Operação: {{ contratoStore.operacao() }}</h3>
+        <p>Tomador: {{ contratoStore.nomeTomador() }}</p>
+        <p>Agência: {{ contratoStore.cAgencia() }}</p>
+        <p>VI: {{ contratoStore.vi() }}</p>
+        
+        @if(contratoStore.ePac()) {
+            <div>
+                <strong>Classificação PAC</strong>
+            </div>
+        }
+        
+        <ul>
+            @for(et of contratoStore.etiquetas(); track et) {
+                <li>{{ et }}</li>
+            }
+        </ul>
+    </div>
+}
+
+<app-alert></app-alert>

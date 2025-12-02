@@ -1,14 +1,13 @@
 <app-contratos></app-contratos>
 
 
-@if(dadosContrato()) {
+@if(contratoStore.contrato()) {
 
   
   <section class="l-section">
     
     <div>
-      <p>Dentro do desbloqueio {{ contratoStore.contratoSelecionado$()?.operacao }}</p>
-      <p>Computed {{ dadosContrato()?.operacao }}-{{ dadosContrato()?.dv }}</p>
+      <p>Dentro do desbloqueio {{ contratoStore.operacao() }}</p>
     </div>
 
     <div class="l-section__item">

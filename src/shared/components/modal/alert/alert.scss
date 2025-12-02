@@ -1,0 +1,41 @@
+.c-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
+    z-index: 9998;
+}
+
+.c-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 24px 32px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    min-width: 260px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.c-modal__mensagem {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+}
+
+.c-modal__botao {
+    align-self: center;
+    padding: 8px 20px;
+    border: none;
+    background: #005CA9;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}

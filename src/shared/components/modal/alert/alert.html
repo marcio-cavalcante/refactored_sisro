@@ -1,0 +1,8 @@
+@if (modal.isOpen()) {
+<div class="c-modal-backdrop" (click)="fechar()"></div>
+
+<div class="c-modal">
+    <p class="c-modal__mensagem">{{ modal.data()?.mensagem }}</p>
+    <button class="c-modal__botao" (click)="fechar()">Ok</button>
+</div>
+}
