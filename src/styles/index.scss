@@ -1,2 +1,10 @@
 @use './themes/container-palettes';
 @use './tokens/variables';
+
+// Importando estilos de layout
+@use './layout/containers';
+@use './layout/sections';
+@use './layout/form-rows';
+
+// Importando estilos de componentes
+@use './components/input';

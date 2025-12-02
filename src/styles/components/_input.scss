@@ -1,0 +1,155 @@
+// COMPONENTE: Campo de entrada (input padrão do sistema)
+
+.c-input {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+
+    &__label {
+        font-size: 0.75rem;
+        color: #6d6d6d;
+        font-weight: 500;
+        margin-left: 6px;
+    }
+
+    &__field {
+        width: 100%;
+        padding: 6px 14px;
+        border-radius: 6px;
+        border: 1px solid #c7c7c7;
+        background-color: #f3f5f7;
+        font-size: 1rem;
+        color: #111;
+        outline: none;
+        transition:
+            border-color 0.15s ease,
+            box-shadow 0.15s ease,
+            background-color 0.15s ease;
+        margin-bottom: 8px;
+
+        &:hover {
+            border-color: #9e9e9e;
+        }
+
+        &:focus {
+            border-color: #4a6cf7;
+            box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.15);
+            background-color: #ffffff;
+        }
+
+        &::placeholder {
+            color: #999;
+        }
+    }
+
+    // Mensagem de erro
+    &__error {
+        font-size: 0.75rem;
+        color: #d32f2f;
+    }
+
+    // Estado de erro
+    &--error {
+        .c-input__field {
+            border-color: #d32f2f;
+            box-shadow: 0 0 0 1px rgba(211, 47, 47, 0.2);
+
+            &:focus {
+                border-color: #b71c1c;
+                box-shadow: 0 0 0 2px rgba(183, 28, 28, 0.25);
+            }
+        }
+    }
+
+    // Tamanho pequeno
+    &--sm {
+        .c-input__field {
+            padding: 6px 10px;
+            font-size: 0.875rem;
+        }
+    }
+
+    // Tamanho grande
+    &--lg {
+        .c-input__field {
+            padding: 12px 16px;
+            font-size: 1.05rem;
+        }
+    }
+}
+
+/*
+Exemplo de uso do componente no HTML:
+<!-- 4 inputs na mesma linha -->
+<div class="l-form-row l-form-row--4">
+  <div class="c-input">
+    <label class="c-input__label">Operação</label>
+    <input
+      class="c-input__field"
+      type="text"
+      value="1043998-25"
+    />
+  </div>
+
+  <div class="c-input">
+    <label class="c-input__label">Agência</label>
+    <input
+      class="c-input__field"
+      type="text"
+      placeholder="0000"
+    />
+  </div>
+
+  <div class="c-input">
+    <label class="c-input__label">Conta</label>
+    <input
+      class="c-input__field"
+      type="text"
+      placeholder="000000-0"
+    />
+  </div>
+
+  <div class="c-input c-input--sm">
+    <label class="c-input__label">DV</label>
+    <input
+      class="c-input__field"
+      type="text"
+      maxlength="2"
+    />
+  </div>
+</div>
+
+<!-- 3 inputs na linha -->
+<div class="l-form-row l-form-row--3">
+  <div class="c-input">
+    <label class="c-input__label">Nome do cliente</label>
+    <input class="c-input__field" type="text" />
+  </div>
+
+  <div class="c-input">
+    <label class="c-input__label">CPF</label>
+    <input class="c-input__field" type="text" />
+  </div>
+
+  <div class="c-input c-input--error">
+    <label class="c-input__label">Valor</label>
+    <input class="c-input__field" type="number" />
+    <span class="c-input__error">Valor obrigatório</span>
+  </div>
+</div>
+
+<!-- 2 inputs na linha, com colunas proporcionais (2/3 e 1/3) -->
+<div class="l-form-row l-form-row--3">
+  <div class="c-input l-col-2">
+    <label class="c-input__label">Endereço</label>
+    <input class="c-input__field" type="text" />
+  </div>
+
+  <div class="c-input l-col-1">
+    <label class="c-input__label">Número</label>
+    <input class="c-input__field" type="text" />
+  </div>
+</div>
+
+*/

@@ -1,0 +1,61 @@
+@use '../themes/container-palettes' as container-palettes;
+
+.l-container {
+    padding: 5px 15px 15px 15px;
+    border-radius: var(--border-radius);
+}
+
+.l-container__title {
+    width: 100%;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: black;
+}
+
+.l-container__subtitle {
+    width: 100%;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: darkblue;
+}
+
+.l-container--two-cols {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.l-container__column {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: var(--border-radius);
+    padding: 5px 15px 15px 15px;
+    box-shadow: var(--shadow-sm);
+    min-width: 150px;
+    flex: 1;
+}
+
+.l-container__column--1-3 {
+    flex: 1;
+}
+
+.l-container__column--2-3 {
+    flex: 2;
+}
+
+// Conector das cores no container
+@include container-palettes.container-color-modifiers('.l-container');
+
+/*
+Exemplo de uso do container no HTML:
+<div class="l-container l-container--two-cols l-container--blue">
+    <h2 class="l-container__title">Título do Container</h2>
+    <h3 class="l-container__subtitle">Subtítulo do Container</h3>
+    <div class="l-container__column l-container__column--1-3">
+        <!-- Conteúdo da primeira coluna -->
+    </div>
+    <div class="l-container__column l-container__column--2-3">
+        <!-- Conteúdo da segunda coluna -->
+    </div>
+</div>
+*/

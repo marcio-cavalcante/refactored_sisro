@@ -1,0 +1,46 @@
+// ==============================================================
+// Layout - Section que agrupa containers / blocos de conteúdo
+// ==============================================================
+
+.l-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+// Cada "bloco" dentro da section (normalmente um container, card etc.)
+.l-section__item {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition-bounce);
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        box-shadow: var(--shadow-hover);
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0; // equivale a top/left/right/bottom: 0;
+        background-image: radial-gradient(circle at 90% 10%,
+                rgba(0, 0, 0, 0.03) 0%,
+                transparent 30%);
+        opacity: 0.7;
+        pointer-events: none;
+    }
+}
+
+/*
+Exemplo de uso da seção no HTML:
+<section class="l-section">
+    <div class="l-section__item">
+        <!-- Conteúdo do primeiro bloco -->
+    </div>
+    <div class="l-section__item">
+        <!-- Conteúdo do segundo bloco -->
+    </div>
+    <!-- Mais blocos conforme necessário -->
+</section>
+*/

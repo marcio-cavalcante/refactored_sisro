@@ -10,17 +10,22 @@ export const routes: Routes = [
 
     // Rota principal protegida por guard
     {
-        path: 'test',
-        loadComponent: () => import('./features/ogu/test/test').then(m => m.Test),
+        path: 'menu',
+        loadComponent: () => import('./features/menu-principal/menu-principal').then(m => m.MenuPrincipal),
         canActivate: [unidadeGuard]
     },
 
-    // Rota raiz: redireciona para sistema se tiver unidade, senão unidade
+    {
+        path: 'desbloqueio',
+        loadChildren: () => import('./features/ogu/desbloqueio/desbloqueio.routes').then(m => m.routes)
+    },
+
+    // Rota raiz redireciona para menu se tiver unidade
     {
         path: '',
         pathMatch: 'full',
         canActivate: [unidadeGuard],
-        loadComponent: () => import('./features/ogu/test/test').then(m => m.Test)
+        loadComponent: () => import('./features/menu-principal/menu-principal').then(m => m.MenuPrincipal)
     },
 
     { path: '**', redirectTo: '' }

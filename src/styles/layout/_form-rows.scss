@@ -1,0 +1,46 @@
+// LAYOUT: Linhas de formulário (agrupamento de inputs na mesma linha)
+
+.l-form-row {
+  display: grid;
+  gap: 16px;
+
+  &--1 {
+    grid-template-columns: 1fr;
+  }
+
+  &--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Colunas com "peso" (opcional, se quiser controlar proporção)
+.l-col-1 {
+  grid-column: span 1;
+}
+
+.l-col-2 {
+  grid-column: span 2;
+}
+
+.l-col-3 {
+  grid-column: span 3;
+}
+
+.l-col-4 {
+  grid-column: span 4;
+}
+
+// Responsividade: em telas pequenas, tudo 1 por linha
+@media (max-width: 768px) {
+  .l-form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
