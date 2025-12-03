@@ -1,0 +1,190 @@
+/* ================================
+   Font Faces - CAIXA Std
+=================================== */
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-LightItalic.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-Book.woff2') format('woff2');
+    font-weight: 350;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-BookItalic.woff2') format('woff2');
+    font-weight: 350;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-SemiBoldItalic.woff2') format('woff2');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-BoldItalic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CAIXA Std';
+    src: url('/assets/fonts/caixa-std/CAIXAStd-ExtraBoldItalic.woff2') format('woff2');
+    font-weight: 800;
+    font-style: italic;
+}
+
+/* ================================
+     Base Variables
+  =================================== */
+$font-family-base: 'CAIXA Std', sans-serif;
+$line-height-base: 1.5;
+$scale-ratio: 1.125; // Major Second
+$base-size: 1rem; // 16px
+
+/* ================================
+     Mixins
+  =================================== */
+@mixin font-style($size, $weight: 400, $style: normal) {
+    font-family: $font-family-base;
+    font-size: $size;
+    font-weight: $weight;
+    font-style: $style;
+    line-height: $line-height-base;
+}
+
+/* ================================
+     Typography Scale
+  =================================== */
+$display-1: $base-size * pow($scale-ratio, 6); // ~2.027rem
+$display-2: $base-size * pow($scale-ratio, 5); // ~1.802rem
+$display-3: $base-size * pow($scale-ratio, 4); // ~1.602rem
+
+$heading-1: $base-size * pow($scale-ratio, 3); // ~1.424rem
+$heading-2: $base-size * pow($scale-ratio, 2); // ~1.266rem
+$heading-3: $base-size * pow($scale-ratio, 1); // ~1.125rem
+$heading-4: $base-size; // 1rem
+$heading-5: $base-size * 0.889; // ~0.889rem
+$heading-6: $base-size * 0.79; // ~0.79rem
+
+$text-huge: $base-size * 1.125; // ~1.125rem
+$text-big: $base-size * 1.062; // ~1.062rem
+$text-large: $base-size; // 1rem
+$text-standard: $base-size * 0.889; // ~0.889rem
+$text-small: $base-size * 0.79; // ~0.79rem
+
+$caption: $base-size * 0.707; // ~0.707rem
+
+/* ================================
+     Classes
+  =================================== */
+.display-1 {
+    @include font-style($display-1, 700);
+}
+
+.display-2 {
+    @include font-style($display-2, 700);
+}
+
+.display-3 {
+    @include font-style($display-3, 600);
+}
+
+.heading-1 {
+    @include font-style($heading-1, 700);
+}
+
+.heading-2 {
+    @include font-style($heading-2, 600);
+}
+
+.heading-3 {
+    @include font-style($heading-3, 600);
+}
+
+.heading-4 {
+    @include font-style($heading-4, 400);
+}
+
+.heading-5 {
+    @include font-style($heading-5, 400);
+}
+
+.heading-6 {
+    @include font-style($heading-6, 400);
+}
+
+.text-huge {
+    @include font-style($text-huge, 400);
+}
+
+.text-big {
+    @include font-style($text-big, 400);
+}
+
+.text-large {
+    @include font-style($text-large, 400);
+}
+
+.text-standard {
+    @include font-style($text-standard, 400);
+}
+
+.text-small {
+    @include font-style($text-small, 400);
+}
+
+.caption {
+    @include font-style($caption, 350);
+}

@@ -1,5 +1,6 @@
 @use './themes/container-palettes';
 @use './tokens/variables';
+@use './tokens/typography.scss';
 
 // Importando estilos de layout
 @use './layout/containers';

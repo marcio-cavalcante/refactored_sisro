@@ -3,82 +3,82 @@
         <ul class="nav-list">
             <li>
                 <a routerLink="/menu">
-                    <span class="material-icons">home</span>
-                    <span class="link-text">INÍCIO</span>
+                    <span class="material-icons" title="Menu inicial">home</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">INÍCIO</span>
                 </a>
             </li>
             <hr>
             <li>
                 <a routerLink="/pt" routerLinkActive="active-link">
-                    <span class="material-icons">description</span>
-                    <span class="link-text">Plano de Trabalho</span>
+                    <span class="material-icons" title="Plano de Trabalho">description</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">Plano de Trabalho</span>
                 </a></li>
             <li>
                 <a routerLink="/contratacao" routerLinkActive="active-link">
-                    <span class="material-icons">work</span>
-                    <span class="link-text">Contratação</span>
+                    <span class="material-icons" title="Contratação">handshake</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">Contratação</span>
                 </a>
             </li>
             <li>
                 <a routerLink="/suspensiva" routerLinkActive="active-link">
-                    <span class="material-icons">pause</span>
-                    <span class="link-text">Suspensiva</span>
+                    <span class="material-icons" title="Suspensiva">grading</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">Suspensiva</span>
                 </a>
             </li>
             <li>
                 <a routerLink="/licitacao" routerLinkActive="active-link">
-                    <span class="material-icons">gavel</span>
-                    <span class="link-text">Licitação</span>
+                    <span class="material-icons" title="Licitação">gavel</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">Licitação</span>
                 </a>
             </li>
             <li>
                 <a routerLink="/desbloqueio" routerLinkActive="active-link">
-                    <span class="material-icons">lock_open</span>
-                    <span class="link-text">Desbloqueio</span>
+                    <span class="material-icons" title="Desbloqueio">attach_money</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">Desbloqueio</span>
                 </a>
             </li>
             <li>
                 <a routerLink="/pcp" routerLinkActive="active-link">
-                    <span class="material-icons">assignment</span>
-                    <span class="link-text">PCP</span>
+                    <span class="material-icons" title="Prestação de Contas Parcial">thumb_up</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">PCP</span>
                 </a>
             </li>
             <li>
                 <a routerLink="/vigencia" routerLinkActive="active-link">
-                    <span class="material-icons">calendar_today</span>
-                    <span class="link-text">Vigência</span>
+                    <span class="material-icons" title="Vigência">calendar_today</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">Vigência</span>
                 </a>
             </li>
             <li>
                 <a routerLink="/pcf" routerLinkActive="active-link">
-                    <span class="material-icons">assignment</span>
-                    <span class="link-text">PCF</span>
+                    <span class="material-icons" title="Prestação de Contas Final">workspace_premium</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">PCF</span>
                 </a>
             </li>
             <li>
                 <a routerLink="/servicos" routerLinkActive="active-link">
-                    <span class="material-icons">build</span>
-                    <span class="link-text">Serviços Extra</span>
+                    <span class="material-icons" title="Serviços Extra">language</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">Serviços Extra</span>
                 </a>
             </li>
             <li>
                 <a routerLink="/reprogramacao" routerLinkActive="active-link">
-                    <span class="material-icons">autorenew</span>
-                    <span class="link-text">Reprogramação</span>
+                    <span class="material-icons" title="Reprogramação">handyman</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">Reprogramação</span>
                 </a>
             </li>
             <hr>
             <li>
                 <a routerLink="/contratos" routerLinkActive="active-link">
-                    <span class="material-icons">description</span>
-                    <span class="link-text">Consulta Operações</span>
+                    <span class="material-icons" title="Consulta Operações">content_paste_search</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">Consulta Operações</span>
                 </a>
             </li>
             <li>
                 <a routerLink="/agents-lae-simplificado" routerLinkActive="active-link"
                     title="RPA: Automação Robótica de Processos - Tecnologia que imita ações humanas para automatizar tarefas repetitivas.">
-                    <span class="material-icons">extension</span>
-                    <span class="link-text">RPA LAE Simplificado</span>
+                    <span class="material-icons" title="RPA LAE Simplificado">precision_manufacturing</span>
+                    <span class="text-standard link-text" [class.closed]="!aberto">RPA LAE Simplificado</span>
                 </a>
             </li>
         </ul>

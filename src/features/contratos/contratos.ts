@@ -31,8 +31,8 @@ export class Contratos {
 		this.loading.set(true);
 
 		this.csvFetchService.getCsvData('assets/data/Planilha_Tudo_Ogu.csv')
-			.pipe(delay(500), // Inserção de um atraso artificial de 500ms proposital
-			finalize(() => this.loading.set(false)))
+			.pipe(delay(50), // Inserção de um atraso artificial proposital
+				finalize(() => this.loading.set(false)))
 			.subscribe(data => {this.contratoStore.setListaContratos(data as ContratoDados[]);});
 	}
 
