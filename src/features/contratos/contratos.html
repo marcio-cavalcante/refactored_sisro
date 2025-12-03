@@ -1,9 +1,16 @@
 <p>Módulo buscar operação</p>
 
-<input type="text" id="operacao-input" class="search-input" [(ngModel)]="operacaoBuscada" 
-placeholder="Ex.: 1110000 ou 999999" (keydown.enter)="buscarOperacao()"
-aria-label="Informe a operação para buscar" />
-<button type="button" class="search-button" (click)="buscarOperacao()" aria-label="Buscar operação">
+<input 
+    type="text" id="operacao-input" class="search-input" 
+    [(ngModel)]="operacaoBuscada" 
+    placeholder="Ex.: 1110000 ou 999999" 
+    (keydown.enter)="buscarOperacao()"
+    aria-label="Informe a operação para buscar" 
+/>
+<button 
+    type="button" class="search-button" 
+    (click)="buscarOperacao()" 
+    aria-label="Buscar operação">
     <span class="material-icons">search</span>
 </button>
 

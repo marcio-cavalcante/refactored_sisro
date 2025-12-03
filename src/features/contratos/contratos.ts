@@ -7,6 +7,7 @@ import { ContratoDados } from '../../shared/models/contrato-dados.model';
 import { Loader } from '../../shared/components/loader/loader';
 import { Alert } from '../../shared/components/modal/alert/alert';
 import { ModalService } from '../../shared/components/modal/alert/modal.service';
+import { delay, finalize } from 'rxjs';
 
 @Component({
 	selector: 'app-contratos',
@@ -28,15 +29,22 @@ export class Contratos {
 
 	ngOnInit(): void {
 		this.loading.set(true);
+
 		this.csvFetchService.getCsvData('assets/data/Planilha_Tudo_Ogu.csv')
-			.subscribe(data => {
-			const contratos = data as ContratoDados[];
-			this.contratoStore.setListaContratos(contratos);
-			this.loading.set(false);
-		});
-	};
+			.pipe(delay(500), // Inserção de um atraso artificial de 500ms proposital
+			finalize(() => this.loading.set(false)))
+			.subscribe(data => {this.contratoStore.setListaContratos(data as ContratoDados[]);});
+	}
 
 	buscarOperacao(): void {
+
+		if (this.loading()) {
+			this.modalService.open({
+				mensagem: 'Os dados ainda estão sendo carregados, tente novamente em alguns segundos.'
+			});
+			return;
+		}
+
         const valorDigitado = this.operacaoBuscada.trim();
  
 		if (!valorDigitado) {
