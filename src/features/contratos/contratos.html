@@ -1,48 +1,159 @@
-<p>Módulo buscar operação</p>
-
-<input 
-    type="text" id="operacao-input" class="search-input" 
-    [(ngModel)]="operacaoBuscada" 
-    placeholder="Ex.: 1110000 ou 999999" 
-    (keydown.enter)="buscarOperacao()"
-    aria-label="Informe a operação para buscar" 
-/>
-<button 
-    type="button" class="search-button" 
-    (click)="buscarOperacao()" 
-    aria-label="Buscar operação">
-    <span class="material-icons">search</span>
-</button>
-
-@if(loading()) {
-    <app-loader></app-loader>
-} 
-
-@else if(buscaFalhou()) {
-    <div>
-      Operação/convênio não encontrada(o).
+@if(mostrarCampoBusca) {
+    <div class="search-container">
+        <h2 class="heading-1">Módulo Buscar Operação</h2>
+        <h2 class="heading-2">Informe o número da operação</h2>
+        <div class="search-field">
+            <label for="operacao-input" class="search-label">Buscar operação</label>
+            <div class="input-wrapper">
+                <input type="text" id="operacao-input" class="search-input" [(ngModel)]="operacaoBuscada"
+                    placeholder="Ex.: 1110000 ou 999999" (keydown.enter)="buscarOperacao()"
+                    aria-label="Informe a operação para buscar" />
+                <button type="button" class="search-button" (click)="buscarOperacao()" aria-label="Buscar operação">
+                    <span class="material-icons">search</span>
+                </button>
+            </div>
+        </div>
+        <p class="search-hint">Informar apenas o número da operação, sem o dígito verificador ou o número do Convênio.</p>
     </div>
 }
 
-@else if(contratoStore.contrato()) {   
-    <div>
-        <h3>Operação: {{ contratoStore.operacao() }}</h3>
-        <p>Tomador: {{ contratoStore.nomeTomador() }}</p>
-        <p>Agência: {{ contratoStore.cAgencia() }}</p>
-        <p>VI: {{ contratoStore.vi() }}</p>
-        
-        @if(contratoStore.ePac()) {
-            <div>
-                <strong>Classificação PAC</strong>
+@if(loading()) {
+<app-loader></app-loader>
+}
+
+<!-- @else if(buscaFalhou()) {
+<div>
+    Operação/convênio não encontrada(o).
+</div>
+} -->
+
+@else if(contratoStore.contrato()) {
+
+<section class="l-section">
+    <div class="l-section__item">
+        <div class="l-container l-container--gray">
+            <div class="cabecalho-container-contratacao">
+                <h3 class="l-container__title heading-2">Dados da Operação</h3>
+                <button class="c-button c-button--info c-button--sm" (click)="novaBusca()">Nova busca
+                    <span class="c-button__icon">🔍</span>
+                </button>
             </div>
-        }
-        
-        <ul>
-            @for(et of contratoStore.etiquetas(); track et) {
-                <li>{{ et }}</li>
-            }
-        </ul>
+            <div class="l-container__column">
+                <!-- <h4 class="l-container__subtitle heading-3">Subtitulo do container</h4> -->
+                <!-- 4 inputs na mesma linha -->
+                <div class="l-form-row l-form-row--4">
+                    <div class="c-input">
+                        <label class="c-input__label">Operação</label>
+                        <input class="c-input__field" type="text"
+                            [value]="contratoStore.operacao() + '-' + contratoStore.dv()" readonly />
+                    </div>
+                    <div class="c-input">
+                        <label class="c-input__label">Convênio</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.convenioTgov()" readonly />
+                    </div>
+                    <div class="c-input">
+                        <label class="c-input__label">Assinatura</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.assinatura()" readonly />
+                    </div>
+
+                    <div class="c-input">
+                        <label class="c-input__label">CNPJ</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.cnpjTomador()" readonly />
+                    </div>
+                </div>
+
+                <div class="l-form-row l-form-row--2">
+                    <div class="c-input">
+                        <label class="c-input__label">Tomador</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.nomeTomador()" readonly />
+                    </div>
+                    <div class="c-input">
+                        <label class="c-input__label">Regramento</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.classificacao()" readonly />
+                    </div>
+                </div>
+
+                <div class="l-form-row l-form-row--2">
+                    <div class="c-input">
+                        <label class="c-input__label">Programa</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.programa()" readonly />
+                    </div>
+                    <div class="c-input">
+                        <label class="c-input__label">Objetivo</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.objetivo()" readonly />
+                    </div>
+                </div>
+
+                <div class="l-form-row l-form-row--1">
+                    <div class="c-input">
+                        <label class="c-input__label">Objeto</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.objeto()" readonly />
+                    </div>
+                </div>
+
+                <div class="l-form-row l-form-row--4">
+                    <div class="c-input">
+                        <label class="c-input__label">Valor de Investimento</label>
+                        <input class="c-input__field" type="text"
+                            [value]="contratoStore.vi() + '-' + contratoStore.dv()" readonly />
+                    </div>
+                    <div class="c-input">
+                        <label class="c-input__label">Valor de Repasse</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.vr()" readonly />
+                    </div>
+                    <div class="c-input">
+                        <label class="c-input__label">Valor de Contrapartida</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.cp()" readonly />
+                    </div>
+                    <div class="c-input">
+                        <label class="c-input__label">OBTV</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.obtv()" readonly />
+                    </div>
+                </div>
+
+                <div class="l-form-row l-form-row--4">
+                    <div class="c-input">
+                        <label class="c-input__label">Cod. Agência</label>
+                        <input class="c-input__field" type="text"
+                            [value]="contratoStore.cAgencia() + '-' + contratoStore.dv()" readonly />
+                    </div>
+                    <div class="c-input">
+                        <label class="c-input__label">Agência</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.agencia()" readonly />
+                    </div>
+                    <div class="c-input">
+                        <label class="c-input__label">Conta</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.cCorrente()" readonly />
+                    </div>
+                    <div class="c-input">
+                        <label class="c-input__label">Gestor</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.gestor()" readonly />
+                    </div>
+                </div>
+
+                <div class="l-form-row l-form-row--1">
+                    <div class="c-input">
+                        <label class="c-input__label">Contato</label>
+                        <input class="c-input__field" type="text" [value]="contratoStore.emailTomador()" readonly />
+                    </div>
+                </div>
+
+                <p class="c-input__label">Etiquetas</p>
+                <div class="l-form-row l-form-row--1">
+                    <div class="c-badge-group">
+                        @for(etiqueta of contratoStore.etiquetas(); track etiqueta) {
+                        <span class="c-badge c-badge--info">{{ etiqueta }}</span>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
+
+</section>
 }
 
 <app-alert></app-alert>

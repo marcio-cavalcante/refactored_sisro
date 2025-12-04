@@ -1,0 +1,45 @@
+.c-badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; // espaço horizontal/vertical entre cápsulas
+    align-items: flex-start;
+}
+
+.c-badge {
+    display: inline-flex; // deixa comportar como texto, mas com flex
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: 999px; // cápsula de remédio
+    font-size: 0.75rem;
+    line-height: 1.2;
+    font-weight: 500;
+    white-space: nowrap; // badge não quebra em várias linhas
+    max-width: 100%; // se um dia você colocar dentro de container pequeno
+    border: 1px solid transparent;
+}
+
+/* VARIANTES DE COR – usam tuas cores/tokens */
+.c-badge--info {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    border-color: #90caf9;
+}
+
+.c-badge--success {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    border-color: #a5d6a7;
+}
+
+.c-badge--warning {
+    background-color: #fff8e1;
+    color: #ff6f00;
+    border-color: #ffe082;
+}
+
+.c-badge--danger {
+    background-color: #ffebee;
+    color: #b71c1c;
+    border-color: #ef9a9a;
+}

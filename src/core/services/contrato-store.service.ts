@@ -47,6 +47,9 @@ export class ContratoStoreService {
     vr = computed(() => parseBRNumber(this._contrato()?.vr));
     cp1 = computed(() => parseBRNumber(this._contrato()?.cp1));
     cp2 = computed(() => parseBRNumber(this._contrato()?.cp2));
+
+    cp = computed(() => this.cp1() + this.cp2());
+    
     vrCreditado = computed(() => parseBRNumber(this._contrato()?.vrCreditado));
     vrDesbloqueado = computed(() => parseBRNumber(this._contrato()?.vrDesbloqueado));
     vrSaldoCreditado = computed(() => parseBRNumber(this._contrato()?.vrSaldoCreditado));

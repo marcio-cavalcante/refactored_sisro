@@ -24,14 +24,14 @@ export class Contratos {
 	private csvFetchService = inject(CsvFetchService);
 	contratoStore = inject(ContratoStoreService);
 
+	mostrarCampoBusca = true;
 	operacaoBuscada: string = '';
-	buscaFalhou = signal(false);
 
 	ngOnInit(): void {
 		this.loading.set(true);
 
 		this.csvFetchService.getCsvData('assets/data/Planilha_Tudo_Ogu.csv')
-			.pipe(delay(50), // Inserção de um atraso artificial proposital
+			.pipe(delay(5), // Inserção de um atraso artificial proposital
 				finalize(() => this.loading.set(false)))
 			.subscribe(data => {this.contratoStore.setListaContratos(data as ContratoDados[]);});
 	}
@@ -51,7 +51,6 @@ export class Contratos {
 			this.modalService.open({
 				mensagem: 'Por favor, informe um número de operação ou convênio para busca.'
 			});
-			this.buscaFalhou.set(true);
 			return;
 		};
 
@@ -59,18 +58,24 @@ export class Contratos {
         const resultado = this.contratoStore.buscarPorOperacaoOuConvenio(valorDigitado);
    
         if (resultado) {
-			this.buscaFalhou.set(false);
- 
             // Oculta o campo de busca após a pesquisa
-            // this.mostrarCampoBusca = false;
+            this.mostrarCampoBusca = false;
         } else {
-			this.buscaFalhou.set(true);
 			this.modalService.open({
 				mensagem: `Operação ${valorDigitado} não encontrada.`
 			});
             // this.mostrarCampoBusca = true;
         }
-    }
+    };
 
+	novaBusca(): void {
+		this.mostrarCampoBusca = true;
+		this.operacaoBuscada = '';
+		this.contratoStore.limparContrato();
+	}
+
+	ngOnDestroy(): void {
+		this.contratoStore.limparContrato();
+	}
 
 }
