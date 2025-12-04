@@ -1,8 +1,8 @@
 <div class="app-container">
-  <app-header [sidebarAberto]="sidebarAberto" (toggleSidebarEvent)="toggleSidebar()"></app-header>
+  <app-header [sidebarAberto]="sidebarStore.aberto()" (toggleSidebarEvent)="sidebarStore.alternar()"></app-header>
 
     <div class="main-container">
-        <app-sidebar [aberto]="sidebarAberto"></app-sidebar>
+        <app-sidebar [aberto]="sidebarStore.aberto()"></app-sidebar>
 
         <main class="content-container">
             <router-outlet />

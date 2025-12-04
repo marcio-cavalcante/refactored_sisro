@@ -1,7 +1,6 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Contratos } from '../../contratos/contratos';
 import { ContratoStoreService } from '../../../core/services/contrato-store.service';
-import { ContratoDados } from '../../../shared/models/contrato-dados.model'
 
 @Component({
 	selector: 'app-desbloqueio',

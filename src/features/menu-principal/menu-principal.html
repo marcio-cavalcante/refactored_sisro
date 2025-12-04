@@ -1,5 +1,13 @@
-<p>menu-principal works!</p>
-<nav>
-    <button routerLink="/desbloqueio">Desbloqueio</button>
-    <button routerLink="/contratos">Contratos</button>
-</nav>
+<main id="principal">
+  <div class="menu-grid">
+    @for (botao of botoes; track botao.title) {
+    <div class="menu-buttons">
+      <a mat-list-item [routerLink]="botao.route">
+          <img [src]="botao.image" alt="" [class.grayscale]="botao.content === 'Breve'" />
+          <p class="heading-3">{{ botao.title }}</p>
+          <span class="caption content">{{ botao.content }}</span>
+        </a>
+    </div>
+    }
+  </div>
+</main>

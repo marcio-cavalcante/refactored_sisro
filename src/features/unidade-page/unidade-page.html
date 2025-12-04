@@ -1,18 +1,25 @@
-<div class="container">
-    <h2>Selecione sua unidade</h2>
+<div class="unidade-wrapper">
+  <div class="unidade-card">
+    <h2 class="titulo">Selecione sua unidade</h2>
+    <p class="descricao">Digite o código ou nome para localizar sua unidade.</p>
 
-    <input 
-        type="text" 
-        placeholder="Digite o código ou nome da unidade" 
-        [(ngModel)]="filtro" 
-        (input)="filtrar()" 
-    />
+    <div class="campo-busca">
+      <span class="icone-busca" aria-hidden="true">🔍</span>
+      <input type="text" placeholder="Ex.: 1234 ou GIGOV/XX"
+        [(ngModel)]="filtro" (input)="filtrar()" />
+    </div>
 
-    @if (sugestoes.length) {   
-        <ul class="sugestoes">
-            <li *ngFor="let u of sugestoes" (click)="selecionar(u)">
-                {{ u.codigo }} - {{ u.nome }}
+    @if (sugestoes.length) {
+      <ul class="sugestoes" role="listbox">
+        @for(u of sugestoes; track u) {
+            <li (click)="selecionar(u)" tabindex="0">
+                <span class="codigo">{{ u.codigo }}</span>
+                <span class="nome">{{ u.nome }}</span>
             </li>
-        </ul>
+        }
+      </ul>
+    } @else if (filtro) {
+      <p class="sem-resultados">Nenhuma unidade encontrada para <strong>"{{ filtro }}"</strong>.</p>
     }
+  </div>
 </div>

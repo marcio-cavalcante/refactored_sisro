@@ -21,6 +21,15 @@ export class Header {
 
 	unidadeService = inject(UnidadeService)
 
+	existeUnidadeSelecionada(): boolean {
+		return this.unidadeService.unidade() != null;
+	}
+
+	// ngOnInit() {
+	// 	if (this.unidadeService.unidade() == null) {
+	// 		this.escondeInputBusca = false;
+	// 	}
+	// }
 
 	filtrar() {
 		const valor = this.filtro.trim().toLowerCase();
@@ -36,7 +45,6 @@ export class Header {
 		this.unidadeService.setUnidade(unidade);
 		this.sugestoes = []
 		this.escondeInputBusca = false;
-
 	}
 
 	alteraUnidade() {

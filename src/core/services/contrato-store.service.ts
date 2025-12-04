@@ -6,6 +6,20 @@ import { parseBRNumber } from '../../shared/utils/number/parse-br-number.util';
     providedIn: 'root'
 })
 export class ContratoStoreService {
+
+    // Trava saida de modulo
+    private _operacaoDigitada = signal<string>('');
+    readonly operacaoDigitada = this._operacaoDigitada.asReadonly();
+
+    setOperacaoDigitada(valor: string) {
+        this._operacaoDigitada.set(valor.trim());
+    }
+
+    temContextoEmUso = computed(() =>
+        !!this._operacaoDigitada() || this._contrato() !== null
+    );
+
+
     private _contrato = signal<ContratoDados | null>(null);
 
     // Disponibilização do objeto Contrato inteiro
@@ -129,7 +143,13 @@ export class ContratoStoreService {
 
     buscarPorOperacaoOuConvenio(valor: string): ContratoDados | null {
         const termo = valor.trim();
-        if (!termo) return null;
+        if (!termo) {
+            this._operacaoDigitada.set('');
+            return null;
+        }
+
+        // registra o termo pesquisado
+        this._operacaoDigitada.set(termo);
 
         const lista = this._listaContratos();
 
@@ -140,6 +160,8 @@ export class ContratoStoreService {
 
         if (encontrado) {
             this.setContrato(encontrado);
+        } else {
+            this._contrato.set(null); // zera explicitamente
         }
 
         return encontrado;
@@ -147,6 +169,7 @@ export class ContratoStoreService {
 
     limparContrato() {
         this._contrato.set(null);
+        this._operacaoDigitada.set('');
     };
 
 }

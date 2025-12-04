@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './header/header';
 import { Footer } from './footer/footer';
 import { Sidebar } from './sidebar/sidebar';
+import { SidebarStore } from '../core/services/sidebar-store.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,14 @@ import { Sidebar } from './sidebar/sidebar';
   styleUrl: './app.scss'
 })
 export class App {
-  sidebarAberto = true;
 
-    toggleSidebar() {
-    this.sidebarAberto = !this.sidebarAberto;
-  }
+  sidebarStore = inject(SidebarStore);
+
+  // sidebarAberto = true;
+
+  //   toggleSidebar() {
+  //   this.sidebarAberto = !this.sidebarAberto;
+  // }
   
   protected readonly title = signal('SISRO');
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuButtons } from './menu-buttons'
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -8,5 +9,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './menu-principal.scss',
 })
 export class MenuPrincipal {
+
+    botoes = MenuButtons;
 
 }

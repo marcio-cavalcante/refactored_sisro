@@ -1,5 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CsvFetchService } from '../../core/services/csv-fetch.service';
 import { ContratoStoreService } from '../../core/services/contrato-store.service';
@@ -9,6 +10,7 @@ import { Alert } from '../../shared/components/modal/alert/alert';
 import { ModalService } from '../../shared/components/modal/alert/modal.service';
 import { delay, finalize } from 'rxjs';
 import { FormatarNumeroExibicaoPipe } from '../../shared/pipes/formatar-numero-exibicao-pipe'
+import { SidebarStore } from '../../core/services/sidebar-store.service';
 
 @Component({
 	selector: 'app-contratos',
@@ -18,17 +20,24 @@ import { FormatarNumeroExibicaoPipe } from '../../shared/pipes/formatar-numero-e
 })
 export class Contratos {
 
-	modalService = inject(ModalService);
-
+	@Input() nomeModulo?: string;
 	loading = signal(false);
-
-	private csvFetchService = inject(CsvFetchService);
-	contratoStore = inject(ContratoStoreService);
-
 	mostrarCampoBusca = true;
 	operacaoBuscada: string = '';
 
+	private sidebarStore = inject(SidebarStore);
+	private route = inject(ActivatedRoute);
+	modalService = inject(ModalService);
+	private csvFetchService = inject(CsvFetchService);
+	contratoStore = inject(ContratoStoreService);
+
 	ngOnInit(): void {
+		if (!this.nomeModulo) {
+			this.nomeModulo = 'buscar Operação';
+		}
+
+		this.sidebarStore.fechar(); // Fecha o sidebar
+
 		this.loading.set(true);
 
 		this.csvFetchService.getCsvData('assets/data/Planilha_Tudo_Ogu.csv')

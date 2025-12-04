@@ -11,7 +11,6 @@
         <span class="heading-1">SISRO - Sistema de Rotinas Operacionais</span>
 
         <span class="spacer"></span>
-
         
         @if (escondeInputBusca) {
             <label class="text-standard">Nova unidade</label>
@@ -19,22 +18,21 @@
             [(ngModel)]="filtro" (input)="filtrar()" />
         }
 
-        <ul class="unidadeSelecionada">
-            <li (click)="alteraUnidade()" title="Clique para alterar">{{ unidadeService.getUnidade()?.codigo}} - {{ unidadeService.getUnidade()?.nome}} <span class="c-button__icon">✏️</span></li>
-        </ul>
+        @if (existeUnidadeSelecionada()) {
+            <ul class="unidadeSelecionada">
+                <li (click)="alteraUnidade()" title="Clique para alterar">{{ unidadeService.getUnidade()?.codigo}} - {{ unidadeService.getUnidade()?.nome}} <span class="c-button__icon">✏️</span></li>
+            </ul>
+        }
 
         @if (sugestoes.length) {   
             <div class="sugestoes-backdrop"></div>
             <ul class="sugestoes sugestoes-center">
                 @for(u of sugestoes; track u) {
-                    <li (click)="selecionar(u)">
-                        {{ u.codigo }} - {{ u.nome }}
-                    </li>
+                    <li (click)="selecionar(u)">{{ u.codigo }} - {{ u.nome }}</li>
                 }
             </ul>
         }
 
-      
     </div>
 
 </div>
