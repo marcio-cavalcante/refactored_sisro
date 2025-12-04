@@ -95,15 +95,17 @@
                     <div class="c-input">
                         <label class="c-input__label">Valor de Investimento</label>
                         <input class="c-input__field" type="text"
-                            [value]="contratoStore.vi() + '-' + contratoStore.dv()" readonly />
+                            [value]="contratoStore.vi() | formatarNumeroExibicao" readonly />
                     </div>
                     <div class="c-input">
                         <label class="c-input__label">Valor de Repasse</label>
-                        <input class="c-input__field" type="text" [value]="contratoStore.vr()" readonly />
+                        <input class="c-input__field" type="text" 
+                            [value]="contratoStore.vr() | formatarNumeroExibicao" readonly />
                     </div>
                     <div class="c-input">
                         <label class="c-input__label">Valor de Contrapartida</label>
-                        <input class="c-input__field" type="text" [value]="contratoStore.cp()" readonly />
+                        <input class="c-input__field" type="text" 
+                            [value]="contratoStore.cp() | formatarNumeroExibicao" readonly />
                     </div>
                     <div class="c-input">
                         <label class="c-input__label">OBTV</label>

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
-import { Unidade, UnidadeService } from '../../core/services/unidade.service';
+import { UnidadeService } from '../../core/services/unidade.service';
+import { Unidade } from '../../shared/models/unidades.model';
 
 @Component({
 	selector: 'app-unidade-page',

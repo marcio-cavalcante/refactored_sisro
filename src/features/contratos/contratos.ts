@@ -8,10 +8,11 @@ import { Loader } from '../../shared/components/loader/loader';
 import { Alert } from '../../shared/components/modal/alert/alert';
 import { ModalService } from '../../shared/components/modal/alert/modal.service';
 import { delay, finalize } from 'rxjs';
+import { FormatarNumeroExibicaoPipe } from '../../shared/pipes/formatar-numero-exibicao-pipe'
 
 @Component({
 	selector: 'app-contratos',
-	imports: [FormsModule, CommonModule, Loader, Alert],
+	imports: [FormsModule, CommonModule, Loader, Alert, FormatarNumeroExibicaoPipe],
 	templateUrl: './contratos.html',
 	styleUrl: './contratos.scss',
 })
@@ -60,6 +61,7 @@ export class Contratos {
         if (resultado) {
             // Oculta o campo de busca após a pesquisa
             this.mostrarCampoBusca = false;
+
         } else {
 			this.modalService.open({
 				mensagem: `Operação ${valorDigitado} não encontrada.`

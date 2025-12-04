@@ -48,3 +48,105 @@
 .menu-arrow {
     font-size: 12px;
 }
+
+
+.input-busca {
+    width: 200px;
+    height: 40px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #c7c7c7;
+    background-color: #f3f5f7;
+    color: #111;
+    outline: none;
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background-color 0.15s ease;
+
+    &:hover {
+        border-color: #9e9e9e;
+    }
+
+    &:focus {
+        border-color: #4a6cf7;
+        box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.15);
+        background-color: #ffffff;
+    }
+
+    &::placeholder {
+        color: #999;
+    }
+}
+
+/* Estilo base das sugestões (mantido, com leves ajustes) */
+.sugestoes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #6888c9;
+}
+
+.sugestoes li {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.sugestoes li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Centraliza a UL no meio da janela */
+.sugestoes-center {
+    position: fixed;
+    /* fixa no viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* centralização perfeita */
+    width: min(90vw, 480px);
+    /* responsivo: até 480px, ou 90% da tela */
+    max-height: 60vh;
+    /* mais espaço para rolar o conteúdo */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    /* acima do restante do conteúdo */
+}
+
+/* Opcional: um rótulo mais forte para o span */
+.text-standard {
+    font-weight: 600;
+}
+
+
+.sugestoes-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 900;
+}
+
+
+
+
+.unidadeSelecionada {
+    list-style: none;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.unidadeSelecionada li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.unidadeSelecionada li:hover {
+    background-color: var(--primary-70);
+}
