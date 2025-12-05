@@ -11,7 +11,7 @@ export const contratoCanDeactivateGuard: CanDeactivateFn<unknown> = () => {
     }
 
     const sair = confirm(
-        'Tem certeza que deseja sair? As informações em uso serão perdidas.'
+        'Tem certeza que deseja sair?'
     );
 
     // se quiser, você pode limpar aqui quando o usuário aceitar

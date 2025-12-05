@@ -9,6 +9,8 @@
         <span class="spacer"></span>
 
         <span class="heading-1">SISRO - Sistema de Rotinas Operacionais</span>
+        <span class="heading-1"> </span>
+        <img src="assets/images/CaixaBranco.png" style="width: 7rem;" alt="">
 
         <span class="spacer"></span>
         
@@ -20,7 +22,10 @@
 
         @if (existeUnidadeSelecionada()) {
             <ul class="unidadeSelecionada">
-                <li (click)="alteraUnidade()" title="Clique para alterar">{{ unidadeService.getUnidade()?.codigo}} - {{ unidadeService.getUnidade()?.nome}} <span class="c-button__icon">✏️</span></li>
+                <li (click)="alteraUnidade()" 
+                    title="Clique para alterar">{{ unidadeService.getUnidade()?.codigo}} - {{ unidadeService.getUnidade()?.nome}} 
+                    <span class="material-icons" title="Plano de Trabalho">edit</span>
+                </li>
             </ul>
         }
 

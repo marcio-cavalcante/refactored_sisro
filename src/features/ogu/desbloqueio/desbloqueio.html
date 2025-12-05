@@ -9,65 +9,114 @@
 	</div>
 
 	<div class="l-section__item">
-		<div class="l-container l-container--blue">
-			<h3 class="l-container__title heading-2">Título do Container</h3>
+		<div class="l-container l-container--two-cols l-container--blue">
+			<h3 class="l-container__title heading-2">Análise Documental / Registros</h3>
 			<div class="l-container__column">
-				<h4 class="l-container__subtitle heading-3">Subtitulo do container</h4>
-				<!-- 4 inputs na mesma linha -->
-				<div class="l-form-row l-form-row--4">
-					<div class="c-input">
-						<label class="c-input__label">Operação</label>
-						<input class="c-input__field" type="text" value="1043998-25" />
-					</div>
+				<!-- <h4 class="l-container__subtitle heading-3">Subtitulo do container</h4> -->
+				<div class="c-checkbox-list">
+					<label class="c-checkbox c-checkbox--block">
+						<input type="checkbox" class="c-checkbox__input" />
+						<span class="c-checkbox__box" aria-hidden="true"></span>
+						<span class="c-checkbox__label">Etiquetas da Operação</span>
+						<span class="tooltip--right" 
+							data-title="Plano de Trabalho a ser ajustado conforme o texto para se adequar ao tamanho exato. 
+							Plano de Trabalho a ser ajustado conforme o texto para se adequar ao tamanho exato.">
+							<span class="material-icons">info</span>
+						</span>
+					</label>
 
-					<div class="c-input">
-						<label class="c-input__label">Agência</label>
-						<input class="c-input__field" type="text" placeholder="0000" />
-					</div>
-
-					<div class="c-input">
-						<label class="c-input__label">Conta</label>
-						<input class="c-input__field" type="text" placeholder="000000-0" />
-					</div>
-
-					<div class="c-input c-input--sm">
-						<label class="c-input__label">DV</label>
-						<input class="c-input__field" type="text" maxlength="2" />
-					</div>
+					<label class="c-checkbox  c-checkbox--block">
+						<input type="checkbox" class="c-checkbox__input" />
+						<span class="c-checkbox__box" aria-hidden="true"></span>
+						<span class="c-checkbox__label">Baixada / Verificada Medição</span>
+						<span class="tooltip--right" 
+							data-title="Plano de Trabalho a ser ajustado conforme o texto para se adequar ao tamanho exato. 
+							Plano de Trabalho a ser ajustado conforme o texto para se adequar ao tamanho exato.">
+							<span class="material-icons">info</span>
+						</span>
+					</label>
 				</div>
 
-				<!-- 3 inputs na linha -->
-				<div class="l-form-row l-form-row--3">
-					<div class="c-input">
-						<label class="c-input__label">Nome do cliente</label>
-						<input class="c-input__field" type="text" />
-					</div>
+				
+				
+<label class="c-radio c-radio--block">
+	<input type="radio" name="localMedicao" value="anexosPt" class="c-radio__input" />
+	<span class="c-radio__mark"></span>
+	<span class="c-radio__label">Anexos do PT</span>
+</label>
 
-					<div class="c-input">
-						<label class="c-input__label">CPF</label>
-						<input class="c-input__field" type="text" />
-					</div>
+<label class="c-radio c-radio--block">
+	<input type="radio" name="localMedicao" value="acompanhamentoObras" class="c-radio__input" />
+	<span class="c-radio__mark"></span>
+	<span class="c-radio__label">Acompanhamento de Obras</span>
+</label>
 
-					<div class="c-input c-input--error">
-						<label class="c-input__label">Valor</label>
-						<input class="c-input__field" type="number" />
-						<span class="c-input__error">Valor obrigatório</span>
-					</div>
-				</div>
+				<label class="c-radio">
+					<input type="radio" name="contact" value="email" class="c-radio__input" />
+					<span class="c-radio__mark" aria-hidden="true"></span>
+					<span class="c-radio__label">Anexos do PT</span>
+					<span class="c-radio__label">Acompanhamento de Obras</span>
+				</label>
+				<span class="c-radio__hint">Selecione um método de contato.</span>
+  
 
-				<!-- 2 inputs na linha, com colunas proporcionais (2/3 e 1/3) -->
-				<div class="l-form-row l-form-row--3">
-					<div class="c-input l-col-2">
-						<label class="c-input__label">Endereço</label>
-						<input class="c-input__field" type="text" />
-					</div>
 
-					<div class="c-input l-col-1">
-						<label class="c-input__label">Número</label>
-						<input class="c-input__field" type="text" />
-					</div>
-				</div>
+				
+<div class="c-radio-list c-radio-list--fieldset">
+	<legend class="c-radio-list__legend">Preferência principal</legend>
+	<div class="c-radio-list__items">
+	  <label class="c-radio c-radio--block">
+		<input type="radio" name="pref" value="email" class="c-radio__input" />
+		<span class="c-radio__mark"></span>
+		<span class="c-radio__label">E-mail</span>
+	  </label>
+  
+	  <label class="c-radio c-radio--block">
+		<input type="radio" name="pref" value="sms" class="c-radio__input" />
+		<span class="c-radio__mark"></span>
+		<span class="c-radio__label">SMS</span>
+	  </label>
+  
+	  <label class="c-radio c-radio--block">
+		<input type="radio" name="pref" value="whatsapp" class="c-radio__input" />
+		<span class="c-radio__mark"></span>
+		<span class="c-radio__label">WhatsApp</span>
+	  </label>
+	</div>
+  </div>
+  
 
+
+
+  
+<div class="c-radio-list c-radio-list--inline">
+	<label class="c-radio c-radio--block">Local de medição</label>
+	<label class="c-radio">
+	  <input type="radio" name="color" value="azul" class="c-radio__input" />
+	  <span class="c-radio__mark"></span>
+	  <span class="c-radio__label">Azul</span>
+	</label>
+  
+	<label class="c-radio">
+	  <input type="radio" name="color" value="verde" class="c-radio__input" />
+	  <span class="c-radio__mark"></span>
+	  <span class="c-radio__label">Verde</span>
+	</label>
+  
+	<label class="c-radio">
+	  <input type="radio" name="color" value="vermelho" class="c-radio__input" />
+	  <span class="c-radio__mark"></span>
+	  <span class="c-radio__label">Vermelho</span>
+	</label>
+</div>  
+
+
+
+
+
+			</div>
+
+			<div class="l-container__column">
 			</div>
 
 		</div>

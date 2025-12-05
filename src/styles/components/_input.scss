@@ -1,5 +1,5 @@
 // COMPONENTE: Campo de entrada (input padrão do sistema)
-@use '../tokens//typography.scss' as *;
+@use '../tokens/typography.scss' as *;
 
 .c-input {
 	display: flex;
@@ -80,6 +80,42 @@
 	}
 }
 
+
+/*
+Estilo para label dentro do input
+Uso:
+<fieldset class="c-fieldset">
+  <legend class="c-legend">ROTULO</legend>
+  <input type="text" class="c-input" value="VALOR DO CAMPO" />
+</fieldset>
+*/
+.c-fieldset {
+	border: 1px solid #aebac3;        // cor da borda
+	border-radius: 8px;                // cantos arredondados
+	padding: 1px 4px 2px 0;                // espaço interno
+	// background: #e9eff3;               // tom leve como na imagem
+	margin-bottom: 4px;
+  }
+  
+  .c-legend {
+	@include font-style($text-small, 400);
+	margin-left: 8px;
+	padding: 0 8px;                    // “abre” a borda e dá espaço ao texto
+	color: #566570;
+  }
+  
+  .c-input-emb {
+	@include font-style($text-standard, 400);
+	margin-left: 18px;
+	margin-bottom: 2px;
+	width: 100%;
+	border: none;
+	outline: none;
+	background: transparent;
+	color: #222;
+  }
+
+  
 /*
 Exemplo de uso do componente no HTML:
 <!-- 4 inputs na mesma linha -->

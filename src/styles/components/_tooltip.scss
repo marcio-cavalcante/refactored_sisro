@@ -1,0 +1,166 @@
+/* =========================================
+   Mixin de Tooltip
+   Uso básico:
+   .meu-elemento { @include tooltip(right, 360px, 12px, true); }
+   Parâmetros:
+   $pos    : top | right | bottom | left
+   $maxW   : largura máxima (px)
+   $offset : espaçamento entre alvo e balão (px)
+   $arrow  : desenhar setinha (true/false)
+========================================= */
+@mixin tooltip($pos: top, $maxW: 320px, $offset: 10px, $arrow: true) {
+	position: relative; // contexto para posicionar ::after/::before
+  
+	/* Balão do tooltip */
+
+	&::after {
+		content: attr(data-title);
+		position: absolute;
+	  
+		/* Tipografia (texto, não ícones) */
+		font-family: 'CAIXA Std', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+		font-weight: 350;
+		font-size: 0.75rem;
+		line-height: 1.35;
+	  
+		/* Container visual */
+		background: var(--tooltip-bg, rgba(51,51,51,0.95));
+		color: var(--tooltip-fg, #fff);
+		padding: 6px 8px;
+		border-radius: 6px;
+		box-shadow: 0 6px 16px rgba(0,0,0,.18);
+		z-index: 1000;
+	  
+		/* >>> Largura e quebra de linha/palavra <<< */
+		display: block;               /* evita cálculo inline estranho */
+		width: max-content;           /* cresce até o conteúdo */
+		max-width: 320px;             /* limita no máximo (ajuste se quiser) */
+		min-width: 16ch;              /* evita ficar estreito demais */
+		white-space: normal;          /* permite múltiplas linhas */
+		overflow-wrap: break-word;    /* quebra somente quando necessário */
+		word-break: normal;           /* NÃO quebrar no meio das palavras */
+		hyphens: auto;                /* hifenização quando suportado */
+	  
+		/* Interação */
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity .16s ease, transform .16s ease;
+	  }
+		
+	/* Mostra no hover e ao focar (acessibilidade) */
+	&:hover::after,
+	&:focus-within::after {
+	  opacity: 1;
+	}
+  
+	/* Setinha opcional usando ::before */
+	@if $arrow == true {
+	  &::before {
+		content: '';
+		position: absolute;
+		width: 0; height: 0;
+		border-style: solid;
+		opacity: 0;
+		transition: opacity .16s ease;
+		z-index: 1001;
+	  }
+	  &:hover::before,
+	  &:focus-within::before {
+		opacity: 1;
+	  }
+	}
+  
+	/* ===== Posicionamento ===== */
+  
+	/* TOP */
+	@if $pos == top {
+	  &::after {
+		bottom: calc(100% + $offset);
+		left: 50%;
+		transform: translateX(-50%);
+	  }
+	  @if $arrow == true {
+		&::before {
+		  bottom: calc(100% + $offset - 6px);
+		  left: 50%;
+		  transform: translateX(-50%);
+		  border-width: 6px 6px 0 6px;
+		  border-color: var(--tooltip-bg, rgba(51,51,51,0.95)) transparent transparent transparent;
+		}
+	  }
+	}
+  
+	/* RIGHT */
+	@else if $pos == right {
+	  &::after {
+		top: 50%;
+		left: calc(100% + $offset);
+		transform: translateY(-50%);
+	  }
+	  @if $arrow == true {
+		&::before {
+		  top: 50%;
+		  left: calc(100% + $offset - 6px);
+		  transform: translateY(-50%);
+		  border-width: 6px 6px 6px 0;
+		  border-color: transparent var(--tooltip-bg, rgba(51,51,51,0.95)) transparent transparent;
+		}
+	  }
+	}
+  
+	/* BOTTOM */
+	@else if $pos == bottom {
+	  &::after {
+		top: calc(100% + $offset);
+		left: 50%;
+		transform: translateX(-50%);
+	  }
+	  @if $arrow == true {
+		&::before {
+		  top: calc(100% + $offset - 6px);
+		  left: 50%;
+		  transform: translateX(-50%);
+		  border-width: 0 6px 6px 6px;
+		  border-color: transparent transparent var(--tooltip-bg, rgba(51,51,51,0.95)) transparent;
+		}
+	  }
+	}
+  
+	/* LEFT */
+	@else if $pos == left {
+	  &::after {
+		top: 50%;
+		right: calc(100% + $offset);
+		left: auto;
+		transform: translateY(-50%);
+	  }
+	  @if $arrow == true {
+		&::before {
+		  top: 50%;
+		  right: calc(100% + $offset - 6px);
+		  left: auto;
+		  transform: translateY(-50%);
+		  border-width: 6px 0 6px 6px;
+		  border-color: transparent transparent transparent var(--tooltip-bg, rgba(51,51,51,0.95));
+		}
+	  }
+	}
+  }
+  
+  /* =========================================
+	 Classe utilitária que usa o mixin
+	 Posição padrão: top
+  ========================================= */
+  .tooltip {
+	@include tooltip(top, 320px, 10px, true);
+  }
+  
+  /* Variações de posição usando a mesma classe base */
+  .tooltip--right  { @include tooltip(right, 320px, 10px, true); }
+  .tooltip--bottom { @include tooltip(bottom, 320px, 10px, true); }
+  .tooltip--left   { @include tooltip(left, 320px, 10px, true); }
+  
+  /* Utilitários de largura (se quiser rápido) */
+  .tooltip--w-sm { /* ~220px */ @include tooltip(top, 220px, 10px, true); }
+  .tooltip--w-md { /* ~320px */ @include tooltip(top, 320px, 10px, true); }
+  .tooltip--w-lg { /* ~420px */ @include tooltip(top, 420px, 12px, true); }

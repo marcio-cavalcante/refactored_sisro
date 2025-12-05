@@ -1,13 +1,17 @@
-@use './themes/container-palettes';
-@use './tokens/variables';
-@use './tokens/typography.scss';
+@forward './themes/container-palettes';
+@forward './tokens/variables';
+@forward './tokens/typography';
+@forward './tokens/material-icons';
 
 // Importando estilos de layout
-@use './layout/containers';
-@use './layout/sections';
-@use './layout/form-rows';
+@forward './layout/containers';
+@forward './layout/sections';
+@forward './layout/form-rows';
 
 // Importando estilos de componentes
-@use './components/input';
-@use './components/badges';
-@use './components/button';
+@forward './components/input';
+@forward './components/badges';
+@forward './components/button';
+@forward './components/tooltip';
+@forward './components/checkbox';
+@forward './components/radio';

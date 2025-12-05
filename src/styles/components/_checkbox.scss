@@ -1,0 +1,475 @@
+// COMPONENTE: Checkbox (padrão do sistema)
+@use '../tokens/typography.scss' as *;
+
+.c-checkbox {
+	display: inline-flex; // permite uso em linha
+	align-items: center;
+	gap: 8px; // espaço entre box e label
+	min-height: 24px; // altura base para alinhamento
+	cursor: pointer;
+	user-select: none;
+
+	// Para alinhar com o grid do formulário quando usado como bloco
+	&--block {
+		display: flex;
+		width: 100%;
+	}
+
+	/* Opcional: espaçamento extra quando usado isolado */
+  	&--mb-8 { margin-bottom: 8px; }
+  	&--mb-12 { margin-bottom: 12px; }
+
+	// Input nativo (visualmente escondido, mas acessível)
+	&__input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	// Caixa visual do checkbox
+	&__box {
+		width: 18px;
+		height: 18px;
+		border-radius: 4px;
+		border: 1px solid #c7c7c7;
+		background-color: #f3f5f7;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		transition:
+			border-color 0.15s ease,
+			box-shadow 0.15s ease,
+			background-color 0.15s ease;
+		// Ícone de check (desenhado via pseudo-elemento)
+		position: relative;
+
+		&::after {
+			content: '';
+			width: 10px;
+			height: 6px;
+			border: 2px solid transparent;
+			border-top: none;
+			border-right: none;
+			transform: rotate(-45deg);
+			opacity: 0;
+			transition: opacity 0.12s ease;
+		}
+	}
+
+	// Rótulo
+	&__label {
+		@include font-style($text-standard, 400);
+		color: #222;
+	}
+
+	// Mensagem de ajuda/erro
+	&__hint {
+		@include font-style($caption, 400);
+		color: #6d6d6d;
+		margin-left: 26px; // alinha sob o label, considerando a largura da box + gap
+	}
+
+	&__error {
+		@include font-style($caption, 400);
+		color: #d32f2f;
+		margin-left: 26px;
+	}
+
+	// Interações (usando o input como fonte de verdade)
+	// Hover no container afeta a box
+	&:hover .c-checkbox__box {
+		border-color: #9e9e9e;
+	}
+
+	// Foco via teclado: anel de foco na box
+	&__input:focus-visible~.c-checkbox__box {
+		border-color: #4a6cf7;
+		box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.15);
+		background-color: #ffffff;
+	}
+
+	// Checked: preenche a box e desenha o check
+	&__input:checked~.c-checkbox__box {
+		border-color: #4a6cf7;
+		background-color: #4a6cf7;
+	}
+
+	&__input:checked~.c-checkbox__box::after {
+		border-color: #fff;
+		opacity: 1;
+	}
+
+	// Indeterminate (para listas de seleção parcial)
+	&__input:indeterminate~.c-checkbox__box {
+		border-color: #4a6cf7;
+		background-color: #ffffff;
+	}
+
+	&__input:indeterminate~.c-checkbox__box::after {
+		content: '';
+		width: 10px;
+		height: 2px;
+		background: #4a6cf7;
+		border: none;
+		transform: none;
+		opacity: 1;
+	}
+
+	// Disabled
+	&--disabled {
+		cursor: not-allowed;
+		opacity: 0.7;
+
+		.c-checkbox__label {
+			color: #6d6d6d;
+		}
+
+		.c-checkbox__box {
+			background-color: #eef1f4;
+			border-color: #d0d7dd;
+		}
+	}
+
+	&__input:disabled~.c-checkbox__box {
+		background-color: #eef1f4;
+		border-color: #d0d7dd;
+	}
+
+	&__input:disabled~.c-checkbox__label {
+		color: #6d6d6d;
+	}
+
+	// Estado de erro no grupo
+	&--error {
+		.c-checkbox__box {
+			border-color: #d32f2f;
+			box-shadow: 0 0 0 1px rgba(211, 47, 47, 0.2);
+		}
+
+		.c-checkbox__input:focus-visible~.c-checkbox__box {
+			border-color: #b71c1c;
+			box-shadow: 0 0 0 2px rgba(183, 28, 28, 0.25);
+		}
+	}
+
+	// Tamanhos
+	&--sm {
+		.c-checkbox__box {
+			width: 16px;
+			height: 16px;
+			border-radius: 3px;
+		}
+
+		.c-checkbox__label {
+			@include font-style($text-small, 400);
+		}
+
+		.c-checkbox__hint,
+		.c-checkbox__error {
+			margin-left: 24px;
+		}
+	}
+
+	&--lg {
+		.c-checkbox__box {
+			width: 20px;
+			height: 20px;
+			border-radius: 5px;
+		}
+
+		.c-checkbox__label {
+			@include font-style($text-large, 400);
+		}
+
+		.c-checkbox__hint,
+		.c-checkbox__error {
+			margin-left: 28px;
+		}
+	}
+
+	// Variante "inline" para múltiplos checkboxes em linha (ex.: preferências)
+	&--inline {
+		margin-right: 16px;
+	}
+}
+
+/* Grupo de checkboxes com legenda, alinhado ao padrão do fieldset dos inputs */
+.c-checkbox-group {
+	border: 1px solid #aebac3;
+	border-radius: 8px;
+	padding: 6px 10px 8px 10px;
+	margin-bottom: 6px;
+
+	&__legend {
+		@include font-style($text-small, 400);
+		margin-left: 8px;
+		padding: 0 8px;
+		color: #566570;
+	}
+
+	&__items {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 16px; // linhas e colunas
+		margin-top: 6px;
+	}
+
+	&--error {
+		border-color: #d32f2f;
+		box-shadow: 0 0 0 1px rgba(211, 47, 47, 0.08);
+	}
+}
+
+
+/* === CONTAINER DE AGRUPAMENTO: c-checkbox-list === */
+.c-checkbox-list {
+	display: flex;
+	flex-direction: column; /* empilha verticalmente */
+	gap: 8px;               /* espaçamento entre itens */
+	margin-bottom: 12px;    /* separa este grupo de outros abaixo */
+  
+	/* Quando quiser listar em linha, com quebra automática */
+	&--inline {
+	  flex-direction: row;
+	  flex-wrap: wrap;
+	  gap: 10px 16px;       /* linha / coluna */
+	}
+  
+	/* Variante com borda/legenda (alinhado ao seu fieldset de inputs) */
+	&--fieldset {
+	  border: 1px solid #aebac3;
+	  border-radius: 8px;
+	  padding: 6px 10px 8px 10px;
+	  margin-bottom: 12px;
+  
+	  .c-checkbox-list__legend {
+		@include font-style($text-small, 400);
+		margin-left: 8px;
+		padding: 0 8px;
+		color: #566570;
+	  }
+  
+	  .c-checkbox-list__items {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-top: 6px;
+	  }
+	}
+  
+	/* Estado de erro no container */
+	&--error {
+	  border-color: #d32f2f;
+	  box-shadow: 0 0 0 1px rgba(211, 47, 47, 0.08);
+	}
+}
+  
+
+/*
+Usos:
+
+Checkbox simples
+<label class="c-checkbox">
+  <input type="checkbox" class="c-checkbox__input" />
+  <span class="c-checkbox__box" aria-hidden="true"></span>
+  <span class="c-checkbox__label">Aceito os termos</span>
+</label>
+
+Estados e tamanhos
+
+<!-- Pequeno -->
+<label class="c-checkbox c-checkbox--sm">
+  <input type="checkbox" class="c-checkbox__input" />
+  <span class="c-checkbox__box"></span>
+  <span class="c-checkbox__label">Receber notificações</span>
+</label>
+
+<!-- Grande com erro -->
+<div class="c-checkbox c-checkbox--lg c-checkbox--error">
+  <label class="c-checkbox">
+    <input type="checkbox" class="c-checkbox__input" />
+    <span class="c-checkbox__box"></span>
+    <span class="c-checkbox__label">Confirmo que li</span>
+  </label>
+  <div class="c-checkbox__error">Você deve confirmar a leitura</div>
+</div>
+
+<!-- Desabilitado -->
+<label class="c-checkbox c-checkbox--disabled">
+  <input type="checkbox" class="c-checkbox__input" disabled />
+  <span class="c-checkbox__box"></span>
+  <span class="c-checkbox__label">Opção indisponível</span>
+</label>
+
+Grupo com legenda (alinhado ao c-fieldset dos inputs)
+
+<fieldset class="c-checkbox-group">
+  <legend class="c-checkbox-group__legend">Preferências</legend>
+  <div class="c-checkbox-group__items">
+    <label class="c-checkbox c-checkbox--inline">
+      <input type="checkbox" class="c-checkbox__input" />
+      <span class="c-checkbox__box"></span>
+      <span class="c-checkbox__label">E-mail</span>
+    </label>
+
+    <label class="c-checkbox c-checkbox--inline">
+      <input type="checkbox" class="c-checkbox__input" />
+      <span class="c-checkbox__box"></span>
+      <span class="c-checkbox__label">SMS</span>
+    </label>
+
+    <label class="c-checkbox c-checkbox--inline">
+      <input type="checkbox" class="c-checkbox__input" />
+      <span class="c-checkbox__box"></span>
+      <span class="c-checkbox__label">WhatsApp</span>
+    </label>
+  </div>
+</fieldset>
+
+Em linha com o layout de formulário (ex.: l-form-row)
+
+<div class="l-form-row l-form-row--3">
+  <div class="c-input l-col-2">
+    <label class="c-input__label">Receber comunicações</label>
+    <div>
+      <label class="c-checkbox c-checkbox--inline">
+        <input type="checkbox" class="c-checkbox__input" />
+        <span class="c-checkbox__box"></span>
+        <span class="c-checkbox__label">E-mail</span>
+      </label>
+      <label class="c-checkbox c-checkbox--inline">
+        <input type="checkbox" class="c-checkbox__input" />
+        <span class="c-checkbox__box"></span>
+        <span class="c-checkbox__label">SMS</span>
+      </label>
+      <label class="c-checkbox c-checkbox--inline">
+        <input type="checkbox" class="c-checkbox__input" />
+        <span class="c-checkbox__box"></span>
+        <span class="c-checkbox__label">WhatsApp</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="c-input l-col-1">
+    <label class="c-input__label">Aceite</label>
+    <label class="c-checkbox">
+      <input type="checkbox" class="c-checkbox__input" />
+      <span class="c-checkbox__box"></span>
+      <span class="c-checkbox__label">Confirmo</span>
+    </label>
+  </div>
+</div>
+
+uso com FormControl
+
+<!-- componente Angular -->
+<label class="c-checkbox" [class.c-checkbox--error]="acceptCtrl.invalid && acceptCtrl.touched">
+  <input
+    type="checkbox"
+    class="c-checkbox__input"
+    [formControl]="acceptCtrl"
+    [disabled]="isLoading"
+  />
+  <span class="c-checkbox__box"></span>
+  <span class="c-checkbox__label">Aceito os termos</span>
+</label>
+
+<div *ngIf="acceptCtrl.invalid && acceptCtrl.touched" class="c-checkbox__error">
+  Aceite é obrigatório.
+
+
+
+// component.ts
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-accept',
+  templateUrl: './accept.component.html',
+})
+export class AcceptComponent {
+  acceptCtrl = new FormControl(false, { validators: [Validators.requiredTrue] });
+  isLoading = false;
+}
+
+
+
+Agrupamento
+A) Dois grupos, um abaixo do outro (com respiro entre eles)
+
+<div class="c-checkbox-list">
+  <label class="c-checkbox c-checkbox--block">
+    <input type="checkbox" class="c-checkbox__input" />
+    <span class="c-checkbox__box" aria-hidden="true"></span>
+    <span class="c-checkbox__label">Item A</span>
+  </label>
+
+  <label class="c-checkbox c-checkbox--block">
+    <input type="checkbox" class="c-checkbox__input" />
+    <span class="c-checkbox__box"></span>
+    <span class="c-checkbox__label">Item B</span>
+  </label>
+</div>
+
+<div class="c-checkbox-list">
+  <label class="c-checkbox c-checkbox--block">
+    <input type="checkbox" class="c-checkbox__input" />
+    <span class="c-checkbox__box"></span>
+    <span class="c-checkbox__label">Item C</span>
+  </label>
+
+  <label class="c-checkbox c-checkbox--block">
+    <input type="checkbox" class="c-checkbox__input" />
+    <span class="c-checkbox__box"></span>
+    <span class="c-checkbox__label">Item D</span>
+  </label>
+
+
+B) Grupo com legenda (fieldset), mantendo seu padrão visual
+
+<div class="c-checkbox-list c-checkbox-list--fieldset">
+  <legend class="c-checkbox-list__legend">Preferências de contato</legend>
+  <div class="c-checkbox-list__items">
+    <label class="c-checkbox c-checkbox--block">
+      <input type="checkbox" class="c-checkbox__input" />
+      <span class="c-checkbox__box"></span>
+      <span class="c-checkbox__label">E-mail</span>
+    </label>
+    <label class="c-checkbox c-checkbox--block">
+      <input type="checkbox" class="c-checkbox__input" />
+      <span class="c-checkbox__box"></span>
+      <span class="c-checkbox__label">SMS</span>
+    </label>
+    <label class="c-checkbox c-checkbox--block">
+      <input type="checkbox" class="c-checkbox__input" />
+      <span class="c-checkbox__box"></span>
+      <span class="c-checkbox__label">WhatsApp</span>
+    </label>
+  </div>
+</div>
+
+
+C) Em linha (lado a lado, com quebra e controle de gaps)
+
+<div class="c-checkbox-list c-checkbox-list--inline">
+  <label class="c-checkbox">
+    <input type="checkbox" class="c-checkbox__input" />
+    <span class="c-checkbox__box"></span>
+    <span class="c-checkbox__label">Opção 1</span>
+  </label>
+
+  <label class="c-checkbox">
+    <input type="checkbox" class="c-checkbox__input" />
+    <span class="c-checkbox__box"></span>
+    <span class="c-checkbox__label">Opção 2</span>
+  </label>
+
+  <label class="c-checkbox">
+    <input type="checkbox" class="c-checkbox__input" />
+    <span class="c-checkbox__box"></span>
+    <span class="c-checkbox__label">Opção 3</span>
+  </label>
+</div>
+
+
+*/
